@@ -1,7 +1,7 @@
 import {
   UserAction,
   UserActionTypes,
-  UserState
+  UserState,
 } from "../../types/userTypes"
 
 

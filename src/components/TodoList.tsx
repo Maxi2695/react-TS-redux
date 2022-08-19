@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import * as todoActions from "../store/action-creators/todoActions";
 import { RootState } from "../types/stateType";
+import { PAGINATIONS } from "../constants";
 import { connect } from 'react-redux';
 
 const TodoList = ({
@@ -13,7 +14,6 @@ const TodoList = ({
   todos,
 }: any) => {
 
-  const paginations = [1, 2, 3, 4, 5]
 
   useEffect(() => {
     fetchTodos(page, limit)
@@ -25,7 +25,7 @@ const TodoList = ({
       {error && <h1>{error}</h1>}
       {!(loading || error) && todos.map((todo: any) => <div key={todo.id}>{todo.id} - {todo.title}</div>)}
       {<div style={{ display: 'flex' }}>
-        {paginations.map((p) => {
+        {PAGINATIONS.map((p) => {
           return (
             <div
               key={p}

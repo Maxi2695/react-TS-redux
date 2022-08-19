@@ -8,6 +8,12 @@ export interface TodoState {
   limit: number;
 }
 
+export interface TodoType {
+userId: number;
+id: number;
+title: string;
+completed: boolean;
+}
 
 export enum TodoActionTypes {
   FETCH_TODOS = 'FETCH_TODOS',
@@ -22,7 +28,7 @@ interface FetchTodosAction {
 
 interface FetchTodosSuccessAction {
   type: TodoActionTypes.FETCH_TODOS_SUCCESS;
-  payload: any[];
+  payload: TodoType[];
 }
 
 interface FetchTodosErrorAction {
