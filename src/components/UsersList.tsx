@@ -2,13 +2,13 @@ import React, { useEffect, FC } from "react";
 import { connect } from 'react-redux';
 import { fetchUsers } from "../store/action-creators/userActions";
 import { RootState } from "../types/stateType";
-import { UserType } from "../types/userTypes";
+import { User } from "../types/userTypes";
 
 interface UserListType {
   error: string | null,
   fetchUsers: () => void;
   loading: boolean,
-  users: UserType[]
+  users: User[]
 }
 
 const UserList: FC<UserListType> = ({
@@ -25,7 +25,7 @@ const UserList: FC<UserListType> = ({
     <div>
       {loading && <h1>Идёт загрузка</h1>}
       {error && <h1>{error}</h1>}
-      {users.map((user: UserType) => <div key={user.id}>{user.name}</div>)}
+      {users.map((user: User) => <div key={user.id}>{user.name}</div>)}
     </div>
   )
 }

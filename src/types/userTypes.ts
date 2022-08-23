@@ -1,31 +1,34 @@
+import { Email, Name, Phone, UniqueId } from "../global";
 
+interface Geo {
+  lat: string;
+  lng: string;
+}
+interface Address {
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+  geo: Geo;
+}
 
-export interface UserType {
-  id: number;
-  name: boolean;
+export interface User {
+  id: UniqueId;
+  name: Name;
   username: string;
-  email: string;
-  adress: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    }
-  };
-  phone: string;
+  email: Email;
+  adress: Address;
+  phone: Phone;
   website: string;
   company: {
-    name: string;
+    name: Name;
     catchPhrase: string;
     bs: string;
   }
 }
 
 export interface UserState {
-  users: UserType[];
+  users: User[];
   loading: boolean;
   error: null | string;
 };
@@ -44,7 +47,7 @@ interface FetchUsersAction {
 
 interface FetchUsersSuccessAction {
   type: UserActionTypes.FETCH_USERS_SUCCESS;
-  payload: UserType[]
+  payload: User[]
 }
 interface FetchUsersErrorAction {
   type: UserActionTypes.FETCH_USERS_ERROR;

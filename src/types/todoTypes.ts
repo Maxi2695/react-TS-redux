@@ -1,18 +1,19 @@
+import { UniqueId } from "../global";
 
 
 export interface TodoState {
-  todos: any[];
+  todos: Todo[];
   loading: boolean;
   error: null | string;
   page: number;
   limit: number;
 }
 
-export interface TodoType {
-userId: number;
-id: number;
-title: string;
-completed: boolean;
+export interface Todo {
+  userId: UniqueId;
+  id: number;
+  title: string;
+  completed: boolean;
 }
 
 export enum TodoActionTypes {
@@ -28,7 +29,7 @@ interface FetchTodosAction {
 
 interface FetchTodosSuccessAction {
   type: TodoActionTypes.FETCH_TODOS_SUCCESS;
-  payload: TodoType[];
+  payload: Todo[];
 }
 
 interface FetchTodosErrorAction {
