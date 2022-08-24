@@ -24,16 +24,14 @@ export interface User {
     name: Name;
     catchPhrase: string;
     bs: string;
-  }
+  };
 }
 
 export interface UserState {
   users: User[];
   loading: boolean;
   error: null | string;
-};
-
-
+}
 
 export enum UserActionTypes {
   FETCH_USERS = "FETCH_USERS",
@@ -47,11 +45,14 @@ interface FetchUsersAction {
 
 interface FetchUsersSuccessAction {
   type: UserActionTypes.FETCH_USERS_SUCCESS;
-  payload: User[]
+  payload: User[];
 }
 interface FetchUsersErrorAction {
   type: UserActionTypes.FETCH_USERS_ERROR;
   payload: string;
 }
 
-export type UserAction = FetchUsersAction | FetchUsersSuccessAction | FetchUsersErrorAction;
+export type UserAction =
+  | FetchUsersAction
+  | FetchUsersSuccessAction
+  | FetchUsersErrorAction;

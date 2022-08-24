@@ -1,5 +1,4 @@
-import { UniqueId } from "../global";
-
+import { UniqueId } from '../global';
 
 export interface TodoState {
   todos: Todo[];
@@ -43,7 +42,7 @@ interface SetTodoPageAction {
 }
 
 export type TodoAction =
-  FetchTodosAction
+  | FetchTodosAction
   | FetchTodosErrorAction
   | FetchTodosSuccessAction
   | SetTodoPageAction;
