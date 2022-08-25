@@ -1,23 +1,26 @@
-import React, { useEffect } from "react";
+import React from "react";
 import TodoList from "./TodoList";
 
+interface IUserMainPage {
+  setIsLogin: (isLogin: boolean) => void;
+  userIdInLS: number;
+}
+
 const UserMainPage = ({
-  isLogin,
   setIsLogin,
-}: any) => {
+  userIdInLS,
+}: IUserMainPage) => {
 
   const logOut = () => {
     localStorage.setItem('todoUSer', '');
     setIsLogin(false)
   }
 
-  useEffect(() => {
-
-  }, [])
-
   return (
     <div>
-      <TodoList />
+      <TodoList
+        userIdInLS={userIdInLS}
+      />
       <button onClick={logOut}>Выйти</button>
     </div>
   )

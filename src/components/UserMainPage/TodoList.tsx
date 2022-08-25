@@ -1,16 +1,26 @@
-import React, { useEffect, FC } from 'react';
+import React, { useEffect } from 'react';
 import * as todoActions from '../../store/action-creators/todoActions';
 import { RootState } from '../../types/stateType';
 import { PAGINATIONS } from '../../constants';
 import Loading from '../Loading';
 import Error from '../Error';
 import { connect } from 'react-redux';
+import { Todo, TodoAction } from '../../types/todoTypes';
+import { User } from '../../types/userTypes';
 
 interface ITodoList {
-
+  error: string | null;
+  fetchTodos: (page: number, limit: number, userId: number) => Promise<void>;
+  limit: number;
+  loading: boolean;
+  page: number;
+  setTodoPage: (page: number) => TodoAction;
+  todos: Todo[],
+  user: User;
+  userIdInLS: number;
 }
 
-const TodoList: FC<ITodoList> = ({
+const TodoList = ({
   error,
   fetchTodos,
   limit,
@@ -18,22 +28,31 @@ const TodoList: FC<ITodoList> = ({
   page,
   setTodoPage,
   todos,
-  userId,
-}: any) => {
+  user,
+  userIdInLS,
+}: ITodoList) => {
+
   useEffect(() => {
-    fetchTodos(page, limit);
-  }, [fetchTodos, page, limit]);
+    let userId;
+    user.id ?
+      userId = user.id :
+      userId = userIdInLS
+    fetchTodos(page, limit, Number(userId));
+  }, [fetchTodos, page, limit, user, userIdInLS]);
 
   return (
     <div>
       {loading && <Loading />}
+
       {error && <Error message={error} />}
+
       {!(loading || error) &&
         todos.map((todo: any) => (
           <div key={todo.id}>
-            {todo.id} - {todo.title}
+            {todo.id} - {todo.title} - {todo.userId}
           </div>
         ))}
+
       {
         <div style={{ display: 'flex' }}>
           {PAGINATIONS.map((p) => {
@@ -56,9 +75,14 @@ const TodoList: FC<ITodoList> = ({
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  ...state.todoReducer,
-});
+const mapStateToProps = (state: RootState) => {
+  console.log(state,);
+
+  return {
+    ...state.todoReducer,
+    ...state.userReducer,
+  }
+};
 
 const mapDispatchToProps = {
   ...todoActions,

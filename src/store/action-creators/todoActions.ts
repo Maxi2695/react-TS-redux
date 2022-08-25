@@ -3,7 +3,7 @@ import { Dispatch } from "redux";
 import { TodoAction, TodoActionTypes } from "../../types/todoTypes";
 
 
-export const fetchTodos = (page = 1, limit = 10) => {
+export const fetchTodos = (page = 1, limit = 10, userId: number | string | null) => {
   return async (dispatch: Dispatch<TodoAction>) => {
     try {
       dispatch({
@@ -13,6 +13,7 @@ export const fetchTodos = (page = 1, limit = 10) => {
         params: {
           _page: page,
           _limit: limit,
+          userId,
         }
       });
       setTimeout(() => {

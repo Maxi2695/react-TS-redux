@@ -1,7 +1,29 @@
 import { UserAction, UserActionTypes, UserState } from "../../types/userTypes";
 
 const initialState: UserState = {
-  users: [],
+  user: {
+    id: 0,
+    name: '',
+    username: '',
+    email: '',
+    address: {
+      street: '',
+      suite: '',
+      city: '',
+      zipcode: '',
+      geo: {
+        lat: '',
+        lng: ''
+      }
+    },
+    phone: '',
+    website: '',
+    company: {
+      name: '',
+      catchPhrase: '',
+      bs: ''
+    }
+  },
   loading: false,
   error: "",
 };
@@ -11,24 +33,30 @@ export const userReducer = (
   action: UserAction
 ): UserState => {
   switch (action.type) {
-    case UserActionTypes.FETCH_USERS:
+    case UserActionTypes.FETCH_USER:
       return {
         loading: true,
         error: null,
-        users: [],
+        user: initialState.user,
       };
-    case UserActionTypes.FETCH_USERS_SUCCESS:
+    case UserActionTypes.FETCH_USER_SUCCESS:
       return {
         loading: false,
         error: null,
-        users: action.payload,
+        user: action.payload,
       };
-    case UserActionTypes.FETCH_USERS_ERROR:
+    case UserActionTypes.FETCH_USER_ERROR:
       return {
-        loading: true,
+        loading: false,
         error: action.payload,
-        users: [],
+        user: initialState.user,
       };
+    case UserActionTypes.FETCH_USER_NOT_FOUND:
+      return {
+        loading: false,
+        error: action.payload,
+        user: initialState.user,
+      }
     default:
       return state;
   }

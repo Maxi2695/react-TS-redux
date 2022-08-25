@@ -1,23 +1,26 @@
-import React, { useEffect, useState, FC } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from './Modal';
 import UserMainPage from '../UserMainPage';
 
-const StartPage: FC = () => {
+const StartPage = () => {
   const [activeModal, setActiveModal] = useState<boolean>(false);
   const [isLogin, setIsLogin] = useState(false);
 
+  const userIdInLS = Number(localStorage.getItem('todoUSer'));
+
   useEffect(() => {
-    if (localStorage.getItem('todoUSer')) {
+    if (userIdInLS) {
       setIsLogin(true);
     }
-  }, []);
+  }, [userIdInLS]);
 
   return (
     <div>
-      {isLogin && <UserMainPage
-        isLogin={isLogin}
-        setIsLogin={setIsLogin}
-      />}
+      {isLogin &&
+        <UserMainPage
+          setIsLogin={setIsLogin}
+          userIdInLS={userIdInLS}
+        />}
       {(activeModal && !isLogin) &&
         <Modal
           setActiveModal={setActiveModal}

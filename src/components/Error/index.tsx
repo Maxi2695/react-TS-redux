@@ -4,6 +4,6 @@ interface IError {
   message: string | null;
 }
 
-const Error: FC<IError> = ({ message }) => <h1>{message}</h1>;
+const Error: FC<IError> = ({ message }) => <h3>{message}</h3>;
 
 export default Error;

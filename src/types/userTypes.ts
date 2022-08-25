@@ -12,47 +12,56 @@ interface Address {
   geo: Geo;
 }
 
+interface Company {
+  name: Name;
+  catchPhrase: string;
+  bs: string;
+}
+
 export interface User {
   id: UniqueId;
   name: Name;
   username: string;
   email: Email;
-  adress: Address;
+  address: Address;
   phone: Phone;
   website: string;
-  company: {
-    name: Name;
-    catchPhrase: string;
-    bs: string;
-  };
+  company: Company;
 }
 
 export interface UserState {
-  users: User[];
+  user: User;
   loading: boolean;
   error: null | string;
 }
 
 export enum UserActionTypes {
-  FETCH_USERS = "FETCH_USERS",
-  FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS",
-  FETCH_USERS_ERROR = "FETCH_USERS_ERROR",
+  FETCH_USER = "FETCH_USERS",
+  FETCH_USER_SUCCESS = "FETCH_USERS_SUCCESS",
+  FETCH_USER_ERROR = "FETCH_USERS_ERROR",
+  FETCH_USER_NOT_FOUND = "FETCH_USER_NOT_FOUND"
 }
 
 interface FetchUsersAction {
-  type: UserActionTypes.FETCH_USERS;
+  type: UserActionTypes.FETCH_USER;
 }
 
 interface FetchUsersSuccessAction {
-  type: UserActionTypes.FETCH_USERS_SUCCESS;
-  payload: User[];
+  type: UserActionTypes.FETCH_USER_SUCCESS;
+  payload: User;
 }
 interface FetchUsersErrorAction {
-  type: UserActionTypes.FETCH_USERS_ERROR;
+  type: UserActionTypes.FETCH_USER_ERROR;
+  payload: string;
+}
+
+interface FetchUserNotFound {
+  type: UserActionTypes.FETCH_USER_NOT_FOUND;
   payload: string;
 }
 
 export type UserAction =
   | FetchUsersAction
   | FetchUsersSuccessAction
-  | FetchUsersErrorAction;
+  | FetchUsersErrorAction
+  | FetchUserNotFound;

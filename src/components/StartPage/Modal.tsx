@@ -1,18 +1,19 @@
-import React, { useEffect, useState, FC } from 'react';
+import React, { useState, FC } from 'react';
 import { RootState } from '../../types/stateType';
 import { fetchUsers } from '../../store/action-creators/userActions';
 import { connect } from 'react-redux';
-import { checkUser } from '../../utils';
 import { User } from '../../types/userTypes';
 import Loading from '../Loading';
 import { Email, Name } from '../../global';
+import Error from '../Error';
 
 interface IModal {
-  fetchUsers: (name: Name, email: Email) => Promise<User[]>;
+  fetchUsers: (name: Name, email: Email) => Promise<User>;
   loading: boolean;
   setActiveModal: (activeModal: boolean) => void;
   setIsLogin: (isLogin: boolean) => void;
-  users: User[];
+  user: User;
+  error: string | null;
 }
 
 const Modal: FC<IModal> = ({
@@ -20,7 +21,7 @@ const Modal: FC<IModal> = ({
   loading,
   setActiveModal,
   setIsLogin,
-  users
+  error,
 }) => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -39,16 +40,13 @@ const Modal: FC<IModal> = ({
     const userEmailValue = event.target.userEmail.value;
     const user = await fetchUsers(userNameValue, userEmailValue);
 
-    if (user?.length) {
-      localStorage.setItem('todoUSer', userName);
+    if (user?.id) {
+      const userId = String(user.id);
+      localStorage.setItem('todoUSer', userId);
       setActiveModal(false);
       setIsLogin(true);
     }
   };
-
-  // useEffect(() => {
-  //   fetchUsers();
-  // }, [fetchUsers]);
 
   return (
     <div>
@@ -73,6 +71,7 @@ const Modal: FC<IModal> = ({
           <button onClick={() => setActiveModal(false)}>Отмена</button>
         </form>
       }
+      {error && <Error message={error} />}
     </div>
   );
 };
