@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Modal from './Modal';
-import UserMainPage from '../UserMainPage';
+import Modal                          from './Modal';
+import UserMainPage                   from '../UserMainPage';
 
 const StartPage = () => {
   const [activeModal, setActiveModal] = useState<boolean>(false);
@@ -35,3 +35,4 @@ const StartPage = () => {
 };
 
 export default StartPage;
+

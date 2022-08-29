@@ -29,9 +29,9 @@ export interface User {
 }
 
 export interface UserState {
-  user: User;
+  user: User | null;
   loading: boolean;
-  error: null | string;
+  error: string | null;
 }
 
 export enum UserActionTypes {

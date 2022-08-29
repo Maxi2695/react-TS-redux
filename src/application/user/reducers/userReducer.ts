@@ -1,43 +1,16 @@
-import { UserAction, UserActionTypes, UserState } from "../../../domain/user/user";
-
-const initialState: UserState = {
-  user: {
-    id: 0,
-    name: '',
-    username: '',
-    email: '',
-    address: {
-      street: '',
-      suite: '',
-      city: '',
-      zipcode: '',
-      geo: {
-        lat: '',
-        lng: ''
-      }
-    },
-    phone: '',
-    website: '',
-    company: {
-      name: '',
-      catchPhrase: '',
-      bs: ''
-    }
-  },
-  loading: false,
-  error: "",
-};
+import { UserAction, UserActionTypes, UserState } from "@domain/user/user";
+const initialState: UserState | null = null
 
 export const userReducer = (
   state = initialState,
   action: UserAction
-): UserState => {
+): UserState | null => {
   switch (action.type) {
     case UserActionTypes.FETCH_USER:
       return {
         loading: true,
         error: null,
-        user: initialState.user,
+        user: initialState,
       };
     case UserActionTypes.FETCH_USER_SUCCESS:
       return {
@@ -49,13 +22,13 @@ export const userReducer = (
       return {
         loading: false,
         error: action.payload,
-        user: initialState.user,
+        user: initialState,
       };
     case UserActionTypes.FETCH_USER_NOT_FOUND:
       return {
         loading: false,
         error: action.payload,
-        user: initialState.user,
+        user: initialState,
       }
     default:
       return state;

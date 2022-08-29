@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import * as todoActions from '../../application/todo/actions/todoActions';
-import { RootState } from '../../types/stateType';
-import { PAGINATIONS } from '../../utils/constants';
-import Loading from '../Loading';
-import Error from '../Error';
-import { connect } from 'react-redux';
-import { Todo, TodoAction } from '../../domain/todo/todo';
-import { User } from '../../domain/user/user';
+import * as todoActions     from '@application/todo/actions/todoActions';
+// import { RootState }     from '@types/stateType';
+import { RootState }        from '../../types/stateType';
+import { PAGINATIONS }      from '@utils/constants';
+import Loading              from '../Loading';
+import Error                from '../Error';
+import { connect }          from 'react-redux';
+import { Todo, TodoAction } from '@domain/todo/todo';
+import { User }             from '@domain/user/user';
 
 interface ITodoList {
   error: string | null;
@@ -76,11 +77,9 @@ const TodoList = ({
 };
 
 const mapStateToProps = (state: RootState) => {
-  console.log(state,);
-
   return {
-    ...state.todoReducer,
-    ...state.userReducer,
+    todo: state.todoReducer,
+    user: state.userReducer
   }
 };
 

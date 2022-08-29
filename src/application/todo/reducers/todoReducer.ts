@@ -1,4 +1,4 @@
-import { TodoAction, TodoActionTypes, TodoState } from "../../../domain/todo/todo";
+import { TodoAction, TodoActionTypes, TodoState } from "@domain/todo/todo";
 
 const initialState: TodoState = {
   todos: [],
@@ -6,8 +6,7 @@ const initialState: TodoState = {
   error: null,
   limit: 10,
   loading: false
-}
-
+};
 
 export const todoReducer = (state = initialState, action: TodoAction): TodoState => {
   switch (action.type) {

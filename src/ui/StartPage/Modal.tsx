@@ -1,27 +1,28 @@
-import React, { useState, FC } from 'react';
-import { RootState } from '../../types/stateType';
-import { fetchUsers } from '../../application/user/actions/userActions';
-import { connect } from 'react-redux';
-import { User } from '../../domain/user/user';
-import Loading from '../Loading';
-import Error from '../Error';
+import React, { useState } from 'react';
+// import { RootState } from '@types/stateType';
+import { RootState }       from '../../types/stateType';
+import { connect }         from 'react-redux';
+import { fetchUsers }      from '@application/user/actions/userActions';
+import { User }            from '@domain/user/user';
+import Loading             from '../Loading';
+import Error               from '../Error';
 
-interface IModal {
+interface Modal {
   fetchUsers: (name: Name, email: Email) => Promise<User>;
-  loading: boolean;
+  loading?: boolean;
   setActiveModal: (activeModal: boolean) => void;
   setIsLogin: (isLogin: boolean) => void;
-  user: User;
-  error: string | null;
+  user?: User;
+  error?: string;
 }
 
-const Modal: FC<IModal> = ({
+const Modal = ({
   fetchUsers,
   loading,
   setActiveModal,
   setIsLogin,
   error,
-}) => {
+}: Modal) => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
 
@@ -75,12 +76,11 @@ const Modal: FC<IModal> = ({
   );
 };
 
-const mapStateToProps = (state: RootState) => ({
-  ...state.userReducer,
-});
+const mapStateToProps = (state: RootState) => state.userReducer;
 
 const mapDispatchToProps = {
   fetchUsers,
 };
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(Modal);
