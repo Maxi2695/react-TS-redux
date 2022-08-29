@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { Email, Name } from '../../global';
-import { USER_NOT_FOUND, LOADING_ERROR } from '../../constants';
-import { UserAction, UserActionTypes } from '../../types/userTypes';
+import { USER_NOT_FOUND, LOADING_ERROR } from '../../../utils/constants';
+import { UserAction, UserActionTypes  } from '../../../domain/user/user';
 
 export const fetchUsers = (name: Name, email: Email) => {
   return async (dispatch: Dispatch<UserAction>) => {

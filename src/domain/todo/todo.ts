@@ -1,4 +1,3 @@
-import { UniqueId } from '../global';
 
 export interface TodoState {
   todos: Todo[];

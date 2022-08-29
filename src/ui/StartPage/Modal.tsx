@@ -1,10 +1,9 @@
 import React, { useState, FC } from 'react';
 import { RootState } from '../../types/stateType';
-import { fetchUsers } from '../../store/action-creators/userActions';
+import { fetchUsers } from '../../application/user/actions/userActions';
 import { connect } from 'react-redux';
-import { User } from '../../types/userTypes';
+import { User } from '../../domain/user/user';
 import Loading from '../Loading';
-import { Email, Name } from '../../global';
 import Error from '../Error';
 
 interface IModal {

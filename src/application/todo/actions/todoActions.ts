@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Dispatch } from "redux";
-import { TodoAction, TodoActionTypes } from "../../types/todoTypes";
+import { TodoAction, TodoActionTypes } from "../../../domain/todo/todo";
 
 
 export const fetchTodos = (page = 1, limit = 10, userId: number | string | null) => {

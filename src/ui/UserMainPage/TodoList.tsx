@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
-import * as todoActions from '../../store/action-creators/todoActions';
+import * as todoActions from '../../application/todo/actions/todoActions';
 import { RootState } from '../../types/stateType';
-import { PAGINATIONS } from '../../constants';
+import { PAGINATIONS } from '../../utils/constants';
 import Loading from '../Loading';
 import Error from '../Error';
 import { connect } from 'react-redux';
-import { Todo, TodoAction } from '../../types/todoTypes';
-import { User } from '../../types/userTypes';
+import { Todo, TodoAction } from '../../domain/todo/todo';
+import { User } from '../../domain/user/user';
 
 interface ITodoList {
   error: string | null;

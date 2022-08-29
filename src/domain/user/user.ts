@@ -1,4 +1,3 @@
-import { Email, Name, Phone, UniqueId } from "../global";
 
 interface Geo {
   lat: string;
