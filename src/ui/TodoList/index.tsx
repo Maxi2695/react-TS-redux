@@ -10,10 +10,11 @@ import { Todo }                       from '@domain/todo/todo';
 import { UserState }                  from '@application/user/reducers/userReducer';
 import Pagination                     from './Pagination';
 import AddTodoForm                    from '../AddTodoForm';
+import { getCurrentTodos }            from '@utils/index';
 import TodoItem                       from './TodoItem';
 
 interface ITodoList {
-  fetchTodos: (page: number, limit: number, userId: number) => Promise<void>;
+  fetchTodos: (userId: number) => Promise<void>;
   setTodoPage: (page: number) => TodoAction;
   userState?: UserState;
   todoState: TodoState;
@@ -38,6 +39,7 @@ const TodoList = ({
     todos,
   } = todoState;
 
+  const currentTodos = getCurrentTodos(page, limit, todos)
 
   useEffect(() => {
     let userId;
@@ -45,8 +47,8 @@ const TodoList = ({
     userState?.user?.id ?
       userId = userState.user.id :
       userId = userIdInLS
-    fetchTodos(page, limit, Number(userId));
-  }, [fetchTodos, page, limit, userState, userIdInLS]);
+    fetchTodos(Number(userId));
+  }, [fetchTodos, userState, userIdInLS]);
 
   return (
     <div>
@@ -67,7 +69,7 @@ const TodoList = ({
       {error && <Error message={error} />}
 
       {!(loading || error) &&
-        todos?.map((todo: Todo) => (
+        currentTodos?.map((todo: Todo) => (
           <TodoItem
             key={todo.id}
             todo={todo}
@@ -75,8 +77,10 @@ const TodoList = ({
         ))}
 
       {<Pagination
+        limit={limit}
         page={page}
         setTodoPage={setTodoPage}
+        totalTodos={todos.length}
       />}
     </div>
   );

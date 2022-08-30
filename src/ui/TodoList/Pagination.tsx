@@ -1,20 +1,25 @@
-import React           from "react";
-import { PAGINATIONS } from "@utils/constants";
-import { TodoAction }  from "@application/todo/actions/todoActions";
+import React              from "react";
+import { getPageNumbers } from "@utils/index";
+import { TodoAction }     from "@application/todo/actions/todoActions";
 
 interface IPagination {
+  limit: LimitNum;
   setTodoPage: (page: number) => TodoAction;
-  page: number
+  page: number;
+  totalTodos: number;
 }
 
 const Pagination = ({
+  limit,
   setTodoPage,
-  page
+  page,
+  totalTodos,
 }: IPagination) => {
+  const pageNumbers = getPageNumbers(totalTodos, limit);
 
   return (
     <div style={{ display: 'flex' }}>
-      {PAGINATIONS.map((p) => {
+      {pageNumbers.map((p: number) => {
         return (
           <div
             key={p}

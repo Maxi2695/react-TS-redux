@@ -14,7 +14,7 @@ const initialState: Nullable<TodoState> = {
   todos: [],
   page: 1,
   error: null,
-  limit: 10,
+  limit: 5,
   loading: false
 };
 

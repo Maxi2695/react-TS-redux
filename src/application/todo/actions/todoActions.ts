@@ -3,7 +3,6 @@ import { Dispatch }        from "redux";
 import { TodoActionTypes } from "@utils/constants";
 import { Todo }            from "@domain/todo/todo";
 
-
 interface FetchTodosAction {
   type: TodoActionTypes.FETCH_TODOS;
 }
@@ -48,7 +47,7 @@ export type TodoAction =
   | SetTodoPageAction
 
 
-export const fetchTodos = (page = 1, limit = 10, userId: number | null) => {
+export const fetchTodos = (userId: UniqueId | null) => {
   return async (dispatch: Dispatch<TodoAction>) => {
     try {
       dispatch({
@@ -56,8 +55,6 @@ export const fetchTodos = (page = 1, limit = 10, userId: number | null) => {
       })
       const response = await axios.get('https://jsonplaceholder.typicode.com/todos', {
         params: {
-          _page: page,
-          _limit: limit,
           userId,
         }
       });
