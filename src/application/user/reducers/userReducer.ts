@@ -1,5 +1,14 @@
-import { UserAction, UserActionTypes, UserState } from "@domain/user/user";
-const initialState: UserState | null = null
+import { UserActionTypes } from "@utils/constants";
+import { UserAction }      from "../actions/userActions";
+import { User }            from "@domain/user/user";
+
+export interface UserState {
+  user: User | null;
+  loading: LoadingStatus;
+  error: ErrorType;
+}
+
+const initialState: Nullable<UserState> = null
 
 export const userReducer = (
   state = initialState,

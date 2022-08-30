@@ -1,20 +1,19 @@
 import React, { useState } from 'react';
-// import { RootState } from '@types/stateType';
-import { RootState }       from '../../types/stateType';
+import { RootState }       from '@application/store/reducers';
 import { connect }         from 'react-redux';
 import { fetchUsers }      from '@application/user/actions/userActions';
 import { User }            from '@domain/user/user';
 import Loading             from '../Loading';
 import Error               from '../Error';
 
-interface Modal {
+interface IModal {
   fetchUsers: (name: Name, email: Email) => Promise<User>;
   loading?: boolean;
   setActiveModal: (activeModal: boolean) => void;
   setIsLogin: (isLogin: boolean) => void;
   user?: User;
   error?: string;
-}
+};
 
 const Modal = ({
   fetchUsers,
@@ -22,7 +21,7 @@ const Modal = ({
   setActiveModal,
   setIsLogin,
   error,
-}: Modal) => {
+}: IModal) => {
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
 
@@ -36,9 +35,7 @@ const Modal = ({
 
   const userLogIn = async (event: any) => {
     event.preventDefault();
-    const userNameValue = event.target.userName.value;
-    const userEmailValue = event.target.userEmail.value;
-    const user = await fetchUsers(userNameValue, userEmailValue);
+    const user = await fetchUsers(userName, userEmail);
 
     if (user?.id) {
       const userId = String(user.id);
@@ -56,14 +53,12 @@ const Modal = ({
           <input
             type="text"
             placeholder="Введите имя пользователя"
-            name="userName"
             value={userName}
             onChange={changeUserName}
           />
           <input
             type="text"
             placeholder="Введите email пользователя"
-            name="userEmail"
             value={userEmail}
             onChange={changeUserEmail}
           />
@@ -76,7 +71,7 @@ const Modal = ({
   );
 };
 
-const mapStateToProps = (state: RootState) => state.userReducer;
+const mapStateToProps = (state: RootState): Nullable<User> => state.userState;
 
 const mapDispatchToProps = {
   fetchUsers,

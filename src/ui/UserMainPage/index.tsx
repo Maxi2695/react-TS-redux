@@ -1,9 +1,9 @@
 import React    from "react";
-import TodoList from "./TodoList";
+import TodoList from "../TodoList";
 
 interface IUserMainPage {
   setIsLogin: (isLogin: boolean) => void;
-  userIdInLS: number;
+  userIdInLS?: number;
 }
 
 const UserMainPage = ({
