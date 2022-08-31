@@ -1,4 +1,3 @@
-
 interface Geo {
   lat: Lat;
   lng: Lng;
@@ -26,5 +25,11 @@ export interface User {
   phone: Phone;
   website: Website;
   company: Company;
+}
+
+export interface UserState {
+  user: User | null;
+  loading: LoadingStatus;
+  error: ErrorType;
 }
 

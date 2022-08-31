@@ -3,31 +3,7 @@ import { Dispatch }        from 'redux';
 import { USER_NOT_FOUND, 
          LOADING_ERROR }   from '@utils/constants';
 import { UserActionTypes } from '@utils/constants';
-import { User }            from '@domain/user/user';
-
-interface FetchUsersAction {
-  type: UserActionTypes.FETCH_USER;
-}
-
-interface FetchUsersSuccessAction {
-  type: UserActionTypes.FETCH_USER_SUCCESS;
-  payload: User;
-}
-interface FetchUsersErrorAction {
-  type: UserActionTypes.FETCH_USER_ERROR;
-  payload: string;
-}
-
-interface FetchUserNotFound {
-  type: UserActionTypes.FETCH_USER_NOT_FOUND;
-  payload: string;
-}
-
-export type UserAction =
-  | FetchUsersAction
-  | FetchUsersSuccessAction
-  | FetchUsersErrorAction
-  | FetchUserNotFound;
+import { UserAction }      from '../types';
 
 export const fetchUsers = (name: Name, email: Email) => {
   return async (dispatch: Dispatch<UserAction>) => {

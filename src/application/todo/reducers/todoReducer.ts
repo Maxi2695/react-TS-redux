@@ -1,14 +1,6 @@
 import { TodoActionTypes } from "@utils/constants";
-import { TodoAction }      from "../actions/todoActions";
-import { Todo }            from "@domain/todo/todo";
-
-export interface TodoState {
-  error: ErrorType;
-  limit: LimitNum;
-  loading: LoadingStatus;
-  page: PageNum;
-  todos: Todo[];
-}
+import { TodoAction }      from "../types";
+import { TodoState }       from "@domain/todo/todo";
 
 const initialState: Nullable<TodoState> = {
   todos: [],

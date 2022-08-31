@@ -4,3 +4,11 @@ export interface Todo {
   title: Title;
   userId: UniqueId;
 }
+
+export interface TodoState {
+  error: ErrorType;
+  limit: LimitNum;
+  loading: LoadingStatus;
+  page: PageNum;
+  todos: Todo[];
+}
