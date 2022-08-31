@@ -28,8 +28,8 @@ export interface User {
 }
 
 export interface UserState {
-  user: User | null;
+  user: Nullable<User>;
   loading: LoadingStatus;
-  error: ErrorType;
+  error: Nullable<ErrorType>;
 }
 

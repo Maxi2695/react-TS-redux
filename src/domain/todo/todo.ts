@@ -6,7 +6,7 @@ export interface Todo {
 }
 
 export interface TodoState {
-  error: ErrorType;
+  error: Nullable<ErrorType>;
   limit: LimitNum;
   loading: LoadingStatus;
   page: PageNum;

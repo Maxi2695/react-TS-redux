@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { RootState }       from '@application/store/reducers';
 import { connect }         from 'react-redux';
 import { fetchUsers }      from '@application/user/actions/userActions';
-import { User }            from '@domain/user/user';
+import { User, UserState } from '@domain/user/user';
 import Loading             from '../../common/Loading';
 import Error               from '../../common/Error';
 
 interface IModal {
   fetchUsers: (name: Name, email: Email) => Promise<User>;
-  loading?: boolean;
+  loading: LoadingStatus;
   setActiveModal: (activeModal: boolean) => void;
   setIsLogin: (isLogin: boolean) => void;
-  user?: User;
-  error?: string;
+  user: Nullable<User>;
+  error: Nullable<ErrorType>;
 };
 
 const Modal = ({
@@ -71,7 +71,7 @@ const Modal = ({
   );
 };
 
-const mapStateToProps = (state: RootState): Nullable<User> => state.userState;
+const mapStateToProps = (state: RootState): UserState => state.userState;
 
 const mapDispatchToProps = {
   fetchUsers,

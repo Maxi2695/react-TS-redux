@@ -1,39 +1,35 @@
+import produce             from 'immer'
 import { UserActionTypes } from "@utils/constants";
 import { UserAction }      from "../types";
 import { UserState }       from "@domain/user/user";
 
-const initialState: Nullable<UserState> = null;
+const initialState: UserState = {
+  user: null,
+  loading: false,
+  error: null,
+};
 
 export const userReducer = (
   state = initialState,
   action: UserAction
-): UserState | null => {
+): Nullable<UserState> => produce(state, (draftState) => {
   switch (action.type) {
     case UserActionTypes.FETCH_USER:
-      return {
-        loading: true,
-        error: null,
-        user: initialState,
-      };
+      draftState.loading = true;
+      break;
     case UserActionTypes.FETCH_USER_SUCCESS:
-      return {
-        loading: false,
-        error: null,
-        user: action.payload,
-      };
+      draftState.loading = false;
+      draftState.user = action.payload;
+      break;
     case UserActionTypes.FETCH_USER_ERROR:
-      return {
-        loading: false,
-        error: action.payload,
-        user: initialState,
-      };
+      draftState.loading = false;
+      draftState.error = action.payload;
+      break;
     case UserActionTypes.FETCH_USER_NOT_FOUND:
-      return {
-        loading: false,
-        error: action.payload,
-        user: initialState,
-      }
+      draftState.loading = false;
+      draftState.error = action.payload;
+      break;
     default:
       return state;
   }
-};
+}) 
