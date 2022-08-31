@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect }         from "react-redux";
 import * as todoActions    from '@application/todo/actions/todoActions';
 import { RootState }       from "@application/store/reducers";
-import { TodoState }       from "@application/todo/reducers/todoReducer";
+import { TodoState }       from "@domain/todo/todo";
 import { Todo }            from "@domain/todo/todo";
 
 interface IAddTodoForm {

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import * as todoActions               from '@application/todo/actions/todoActions';
 import { RootState }                  from '@application/store/reducers';
-import Loading                        from '../Loading';
-import Error                          from '../Error';
-import { TodoAction }                 from '@application/todo/actions/todoActions';
+import Loading                        from '../../common/Loading';
+import Error                          from '../../common/Error';
+import { TodoAction }                 from '@application/todo/types';
 import { connect }                    from 'react-redux';
-import { TodoState }                  from '@application/todo/reducers/todoReducer';
+import { TodoState }                  from '@domain/todo/todo';
 import { Todo }                       from '@domain/todo/todo';
-import { UserState }                  from '@application/user/reducers/userReducer';
+import { UserState }                  from '@domain/user/user';
 import Pagination                     from './Pagination';
 import AddTodoForm                    from '../AddTodoForm';
 import { getCurrentTodos }            from '@utils/index';

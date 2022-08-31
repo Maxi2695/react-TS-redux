@@ -1,6 +1,6 @@
 import React              from "react";
 import { getPageNumbers } from "@utils/index";
-import { TodoAction }     from "@application/todo/actions/todoActions";
+import { TodoAction }     from "@application/todo/types";
 
 interface IPagination {
   limit: LimitNum;

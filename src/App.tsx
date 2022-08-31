@@ -1,4 +1,4 @@
-import StartPage from "./ui/StartPage";
+import StartPage from "./ui/containers/StartPage";
 
 function App() {
   return (

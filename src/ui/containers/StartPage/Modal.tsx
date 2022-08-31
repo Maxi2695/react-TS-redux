@@ -3,8 +3,8 @@ import { RootState }       from '@application/store/reducers';
 import { connect }         from 'react-redux';
 import { fetchUsers }      from '@application/user/actions/userActions';
 import { User }            from '@domain/user/user';
-import Loading             from '../Loading';
-import Error               from '../Error';
+import Loading             from '../../common/Loading';
+import Error               from '../../common/Error';
 
 interface IModal {
   fetchUsers: (name: Name, email: Email) => Promise<User>;
