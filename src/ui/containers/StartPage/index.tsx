@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState }        from 'react';
 import Modal                          from './Modal';
 import * as userActions               from '@application/user/actions/userActions'
 import { connect }                    from 'react-redux';

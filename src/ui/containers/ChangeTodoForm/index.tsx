@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState }        from "react";
 import { connect }         from "react-redux";
-import * as todoActions    from '@application/todo/actions/todoActions';
-import { TODO_AT_WORK, 
+import * as todoActions    from "@application/todo/actions/todoActions";
+import { TODO_AT_WORK,
          TODO_COMPLETED }  from "@utils/constants";
 import { Todo }            from "@domain/todo/todo";
 

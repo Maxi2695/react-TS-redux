@@ -2,11 +2,11 @@
   "compilerOptions": {
      "baseUrl": ".",
      "paths": {
-        "@application/*": ["src/application/*"],
-        "@types/*": ["src/types/*"],
-        "@utils/*": ["src/utils/*"],
-        "@domain/*": ["src/domain/*"],
-
+        "@application/*": ["./src/application/*"],
+        "@types/*": ["./src/types/*"],
+        "@utils/*": ["./src/utils/*"],
+        "@domain/*": ["./src/domain/*"],
+        "@ui/*": ["./src/ui/*"],  
      }
   }
 }

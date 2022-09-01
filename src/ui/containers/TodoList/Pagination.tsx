@@ -1,4 +1,3 @@
-import React              from "react";
 import { getPageNumbers } from "@utils/index";
 
 interface IPagination {

@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState }        from 'react';
 import { RootState }       from '@application/store/reducers';
 import { connect }         from 'react-redux';
 import { fetchUsers }      from '@application/user/actions/userActions';
-import { User, UserState } from '@domain/user/user';
-import Loading             from '../../common/Loading';
-import Error               from '../../common/Error';
+import { UserState, User } from '@domain/user/user';
+import Loading             from '@ui/common/Loading';
+import Error               from '@ui/common/Error';
 
 interface IModal {
   fetchUsers: (name: Name, email: Email) => Promise<User>;
