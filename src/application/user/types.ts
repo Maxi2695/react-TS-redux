@@ -19,8 +19,14 @@ interface FetchUserNotFound {
   payload: string;
 }
 
+interface SetIsLogin {
+  type: UserActionTypes.SET_IS_LOGIN;
+  payload: IsLogin;
+}
+
 export type UserAction =
   | FetchUsersAction
   | FetchUsersSuccessAction
   | FetchUsersErrorAction
-  | FetchUserNotFound;
+  | FetchUserNotFound
+  | SetIsLogin

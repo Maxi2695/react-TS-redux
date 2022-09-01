@@ -31,5 +31,6 @@ export interface UserState {
   user: Nullable<User>;
   loading: LoadingStatus;
   error: Nullable<ErrorType>;
+  isLogin: IsLogin;
 }
 

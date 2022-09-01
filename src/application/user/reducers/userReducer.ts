@@ -7,6 +7,7 @@ const initialState: UserState = {
   user: null,
   loading: false,
   error: null,
+  isLogin: false,
 };
 
 export const userReducer = (
@@ -28,6 +29,9 @@ export const userReducer = (
     case UserActionTypes.FETCH_USER_NOT_FOUND:
       draftState.loading = false;
       draftState.error = action.payload;
+      break;
+    case UserActionTypes.SET_IS_LOGIN:
+      draftState.isLogin = action.payload;
       break;
     default:
       return state;

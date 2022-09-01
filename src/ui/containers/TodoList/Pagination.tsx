@@ -1,10 +1,9 @@
 import React              from "react";
 import { getPageNumbers } from "@utils/index";
-import { TodoAction }     from "@application/todo/types";
 
 interface IPagination {
   limit: LimitNum;
-  setTodoPage: (page: number) => TodoAction;
+  setTodoPage: (page: number) => void;
   page: number;
   totalTodos: number;
 }

@@ -3,7 +3,6 @@ import * as todoActions               from '@application/todo/actions/todoAction
 import { RootState }                  from '@application/store/reducers';
 import Loading                        from '../../common/Loading';
 import Error                          from '../../common/Error';
-import { TodoAction }                 from '@application/todo/types';
 import { connect }                    from 'react-redux';
 import { TodoState }                  from '@domain/todo/todo';
 import { Todo }                       from '@domain/todo/todo';
@@ -15,7 +14,7 @@ import TodoItem                       from './TodoItem';
 
 interface ITodoList {
   fetchTodos: (userId: number) => Promise<void>;
-  setTodoPage: (page: number) => TodoAction;
+  setTodoPage: (page: number) => void;
   userState?: UserState;
   todoState: TodoState;
   userIdInLS?: number;

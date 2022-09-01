@@ -15,4 +15,5 @@ type Suite = string;
 type Zipcode = string;
 type Lat = string;
 type Lng = string;
+type IsLogin = boolean;
 type Nullable<T> = T | null;

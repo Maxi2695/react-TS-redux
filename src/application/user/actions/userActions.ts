@@ -13,12 +13,10 @@ export const fetchUsers = (name: Name, email: Email) => {
       });
       const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users?name=${name}&email=${email}`);
       if (data?.length) {
-        setTimeout(() => {
-          dispatch({
-            type: UserActionTypes.FETCH_USER_SUCCESS,
-            payload: data[0]
-          });
-        }, 500);
+        dispatch({
+          type: UserActionTypes.FETCH_USER_SUCCESS,
+          payload: data[0]
+        });
         return data[0]
       } else {
         dispatch({
@@ -34,4 +32,11 @@ export const fetchUsers = (name: Name, email: Email) => {
       });
     }
   };
+};
+
+export const setIsLogin = (value: IsLogin) => (dispatch: Dispatch<UserAction>) => {
+  dispatch({
+    type: UserActionTypes.SET_IS_LOGIN,
+    payload: value,
+  })
 };

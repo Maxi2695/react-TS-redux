@@ -1,10 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import Modal                          from './Modal';
+import * as userActions               from '@application/user/actions/userActions'
+import { connect }                    from 'react-redux';
 import UserMainPage                   from '../UserMainPage';
+import { UserState }                  from '@domain/user/user';
+import { RootState }                  from '@application/store/reducers';
 
-const StartPage = () => {
+interface IStartPage {
+  setIsLogin: (value: boolean) => void;
+  isLogin: IsLogin;
+}
+
+const StartPage = ({
+  setIsLogin,
+  isLogin,
+}: IStartPage) => {
   const [activeModal, setActiveModal] = useState<boolean>(false);
-  const [isLogin, setIsLogin] = useState(false);
 
   const userIdInLS = Number(localStorage.getItem('todoUSer'));
 
@@ -12,7 +23,7 @@ const StartPage = () => {
     if (userIdInLS) {
       setIsLogin(true);
     }
-  }, [userIdInLS]);
+  }, [userIdInLS, setIsLogin]);
 
   return (
     <div>
@@ -34,5 +45,11 @@ const StartPage = () => {
   );
 };
 
-export default StartPage;
+const mapStateToProps = (state: RootState): UserState => state.userState;
+
+const mapDispatchToProps = {
+  ...userActions,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(StartPage);
 

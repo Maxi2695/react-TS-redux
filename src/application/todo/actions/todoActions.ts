@@ -2,9 +2,9 @@ import axios               from "axios";
 import { Dispatch }        from "redux";
 import { TodoActionTypes } from "@utils/constants";
 import { Todo }            from "@domain/todo/todo";
-import { TodoAction } from "../types";
+import { TodoAction }      from "../types";
 
-export const fetchTodos = (userId: Nullable<UniqueId> ) => {
+export const fetchTodos = (userId: Nullable<UniqueId>) => {
   return async (dispatch: Dispatch<TodoAction>) => {
     try {
       dispatch({
@@ -28,30 +28,30 @@ export const fetchTodos = (userId: Nullable<UniqueId> ) => {
   }
 }
 
-export const setTodoPage = (page: number): TodoAction => {
-  return {
+export const setTodoPage = (page: number) => (dispatch: Dispatch<TodoAction>) => {
+  dispatch({
     type: TodoActionTypes.SET_TODO_PAGE,
-    payload: page
-  }
-}
+    payload: page,
+  });
+};
 
-export const deleteTodo = (todoId: number): TodoAction => {
-  return {
+export const deleteTodo = (todoId: number) => (dispatch: Dispatch<TodoAction>) => {
+  dispatch({
     type: TodoActionTypes.DELETE_TODO,
     payload: todoId,
-  }
-}
+  });
+};
 
-export const changeTodo = (params: Todo): TodoAction => {
-  return {
+export const changeTodo = (params: Todo) => (dispatch: Dispatch<TodoAction>) => {
+  dispatch({
     type: TodoActionTypes.CHANGE_TODO,
     payload: params,
-  }
-}
+  });
+};
 
-export const addTodo = (params: Todo): TodoAction => {
-  return {
+export const addTodo = (params: Todo) => (dispatch: Dispatch<TodoAction>) => {
+  dispatch({
     type: TodoActionTypes.ADD_TODO,
     payload: params,
-  }
-}
+  });
+};
