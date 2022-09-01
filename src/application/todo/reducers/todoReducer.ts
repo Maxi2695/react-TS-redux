@@ -18,7 +18,7 @@ export const todoReducer = (state = initialState, action: TodoAction): TodoState
         draftState.loading = true;
         break;
       case TodoActionTypes.FETCH_TODOS_SUCCESS:
-        const revesersTodos = action.payload.reverse();
+        const revesersTodos = action.payload;
         draftState.loading = false;
         draftState.todos = revesersTodos;
         break;

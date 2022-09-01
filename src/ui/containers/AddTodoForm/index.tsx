@@ -1,20 +1,16 @@
 import { useState }        from "react";
 import { connect }         from "react-redux";
+import {nanoid}            from "nanoid";
 import * as todoActions    from "@application/todo/actions/todoActions";
-import { RootState }       from "@application/store/reducers";
-import { TodoState }       from "@domain/todo/todo";
-import { Todo }            from "@domain/todo/todo";
 
 interface IAddTodoForm {
   addTodo: (params: any) => void;
   setAddingTodo: (isAddingTodo: boolean) => void;
-  todos: Todo[];
 }
 
 const AddTodoForm = ({
   addTodo,
   setAddingTodo,
-  todos,
 }: IAddTodoForm) => {
   const [todoTitle, setTodoTitle] = useState('');
 
@@ -26,7 +22,7 @@ const AddTodoForm = ({
     event.preventDefault();
 
     const addedTodo = {
-      id: todos.length + 1,
+      id: nanoid(),
       title: todoTitle,
       completed: false,
     }
@@ -56,10 +52,8 @@ const AddTodoForm = ({
   )
 }
 
-const mapStateToProps = (state: RootState): Nullable<TodoState> => state.todoState;
-
 const mapDispatchToProps = {
   ...todoActions,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddTodoForm);
+export default connect(null, mapDispatchToProps)(AddTodoForm);

@@ -4,25 +4,27 @@ import { connect }         from "react-redux";
 import * as todoActions    from "@application/todo/actions/todoActions";
 import { TODO_AT_WORK,
          TODO_COMPLETED }  from "@utils/constants";
+import { setTodoId }       from "@utils/index";         
 import ChangeTodoForm      from "../ChangeTodoForm";
 
 
 interface ITodoItem {
   todo: Todo;
+  todos: Todo[];
   deleteTodo: (todoId: number) => void;
 }
 
 const TodoItem = ({
   todo,
+  todos,
   deleteTodo,
 }: ITodoItem) => {
 
   const [isChangedTodo, setIsChangedTodo] = useState(false);
 
-
   return (
     <div key={todo.id}>
-      <p>Номер задачи: {todo.id}</p>
+      <p>Номер задачи: {setTodoId(todos, todo)}</p>
       <p>Описание: {todo.title}</p>
 
       <div style={{ marginBottom: '10px' }}>

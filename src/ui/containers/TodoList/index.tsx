@@ -72,6 +72,7 @@ const TodoList = ({
           <TodoItem
             key={todo.id}
             todo={todo}
+            todos={todos}
           />
         ))}
 
