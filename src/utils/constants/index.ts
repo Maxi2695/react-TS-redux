@@ -6,6 +6,8 @@ export const TODO_COMPLETED = 'Выполнена';
 
 export const TODO_AT_WORK = 'В работе';
 
+export const LOCAL_STORAGE_PROPERTY = 'todoUser'
+
 export enum UserActionTypes {
   FETCH_USER = "FETCH_USERS",
   FETCH_USER_SUCCESS = "FETCH_USERS_SUCCESS",

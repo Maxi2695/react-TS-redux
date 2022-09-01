@@ -1,9 +1,10 @@
-import { useEffect, useState }        from 'react';
+import { useState }                   from 'react';
 import Modal                          from './Modal';
 import * as userActions               from '@application/user/actions/userActions'
 import { connect }                    from 'react-redux';
 import UserMainPage                   from '../UserMainPage';
 import { UserState }                  from '@domain/user/user';
+import { useGetLocalStorage }         from '@application/helpers/hooks';
 import { RootState }                  from '@application/store/reducers';
 
 interface IStartPage {
@@ -16,14 +17,8 @@ const StartPage = ({
   isLogin,
 }: IStartPage) => {
   const [activeModal, setActiveModal] = useState<boolean>(false);
-
-  const userIdInLS = Number(localStorage.getItem('todoUSer'));
-
-  useEffect(() => {
-    if (userIdInLS) {
-      setIsLogin(true);
-    }
-  }, [userIdInLS, setIsLogin]);
+  
+  const { userIdInLS } = useGetLocalStorage(setIsLogin)
 
   return (
     <div>

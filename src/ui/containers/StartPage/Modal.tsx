@@ -1,10 +1,11 @@
-import { useState }        from 'react';
-import { RootState }       from '@application/store/reducers';
-import { connect }         from 'react-redux';
-import { fetchUsers }      from '@application/user/actions/userActions';
-import { UserState, User } from '@domain/user/user';
-import Loading             from '@ui/common/Loading';
-import Error               from '@ui/common/Error';
+import { useState }               from 'react';
+import { RootState }              from '@application/store/reducers';
+import { connect }                from 'react-redux';
+import { fetchUsers }             from '@application/user/actions/userActions';
+import { UserState, User }        from '@domain/user/user';
+import Loading                    from '@ui/common/Loading';
+import Error                      from '@ui/common/Error';
+import { setLocalStorage }        from '@application/helpers';
 
 interface IModal {
   fetchUsers: (name: Name, email: Email) => Promise<User>;
@@ -39,9 +40,10 @@ const Modal = ({
 
     if (user?.id) {
       const userId = String(user.id);
-      localStorage.setItem('todoUSer', userId);
-      setActiveModal(false);
-      setIsLogin(true);
+
+       setLocalStorage(userId, setIsLogin, true, setActiveModal)
+      // setActiveModal(false);
+      // setIsLogin(true);
     }
   };
 

@@ -1,4 +1,5 @@
-import TodoList from "../TodoList";
+import TodoList            from "../TodoList";
+import { setLocalStorage } from "@application/helpers";
 
 interface IUserMainPage {
   setIsLogin: (isLogin: boolean) => void;
@@ -11,8 +12,8 @@ const UserMainPage = ({
 }: IUserMainPage) => {
 
   const logOut = () => {
-    localStorage.setItem('todoUSer', '');
-    setIsLogin(false)
+    const userId = '';
+    setLocalStorage(userId, setIsLogin, false)
   }
 
   return (
